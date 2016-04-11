@@ -59,6 +59,7 @@ get_header();
         };
         $("article .title").click(function( event ){
             return;
+
             event.preventDefault();
 
             var $title = $(this);
