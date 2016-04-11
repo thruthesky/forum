@@ -23,12 +23,27 @@ if ( isset($_REQUEST['no_theme']) ) { // see if it's a test connection.
 
 /**
  * This code will be deprecated.
+ * @warning We don't do ajax now. Maybe we do it later.
  */
 if ( isset( $_REQUEST['ajax'] ) ) include 'ajax.php';
 
 
+/**
+ * 'do' codes.
+ */
+if ( isset( $_REQUEST['do'] ) ) include 'do.php';
 
 
-include 'list-basic.php';
+/**
+ * The code below should print out get_header(), get_footer()
+ */
+if ( is_single() ) {
+    include 'single-basic.php';
+}
+else {
+    include 'category-basic.php';
+}
+
+
 
 return 1;
