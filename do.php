@@ -25,5 +25,7 @@ function post_create() {
     }
 
 
+
+
     return get_permalink( $post_ID );
 }

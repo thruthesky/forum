@@ -32,9 +32,7 @@ the_post();
                 <?php
                 the_content();
 
-                if ( '' !== get_the_author_meta( 'description' ) ) {
-                    get_template_part( 'biography' );
-                }
+                if ( '' !== get_the_author_meta( 'description' ) ) include 'biography.php';
                 ?>
             </div>
 

@@ -1,8 +1,7 @@
 <?php
-
-if ( !isset($_REQUEST['f']) || !$_REQUEST['f']) return _error('no function.');
-
-$_REQUEST['f']();
+if ( !isset($_REQUEST['test']) || !$_REQUEST['test']) return _error('no function.');
+$_REQUEST['test']();
+exit;
 
 
 function _error( $msg ) {
@@ -27,18 +26,29 @@ function _category_id() {
     echo get_cat_ID( $name );
 }
 
-function _insert_test_posts() {
+function input_posts() {
 
-    $my_post = array(
-        'post_title'    => "1. 질문과 답변 게시판 글.",
-        'post_content'  => "자, 빠리 빠릴 빨리 합니다.<br>돈 욕심이 많아 사업을 많이 한다?? 사업을 하면 다 잘되나?",
-        'post_status'   => 'publish',
-        'post_author'   => 1,
-        'post_category' => array( get_cat_ID('질문과 답변') )
-    );
+    $category = get_category_by_slug( $_REQUEST['slug'] );
+    if ( is_wp_error($category) ) {
+        $category->get_error_message();
+        exit;
+    }
+    $category_id = $category->term_id;
 
-    // Insert the post into the database
-    wp_insert_post( $my_post );
+
+    for ( $i = 1; $i < 100; $i ++ ) {
+
+        $my_post = array(
+            'post_title'    => "$i : post",
+            'post_content'  => "This is $i nth content.<br>That's why I do...",
+            'post_status'   => 'publish',
+            'post_author'   => 1,
+            'post_category' => array( $category_id )
+        );
+
+        // Insert the post into the database
+        wp_insert_post( $my_post );
+    }
 
 }
 

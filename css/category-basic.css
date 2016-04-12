@@ -1,0 +1,84 @@
+#posts,
+#posts td,
+#posts h2 {
+    font-size: 1.2rem;
+    font-family: "Malgun Gothic", "AppleGothic", "Gulim", "Dotum", serif;
+}
+
+#posts table {
+    width: 100%;
+}
+
+#posts table tr,
+#posts table td {
+    margin: 0;
+    padding: 0;
+}
+
+
+#posts thead th {
+    font-weight: normal;
+    font-size: 1rem;
+    text-align:center;
+}
+
+#posts .title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+}
+#posts .title h2 {
+    margin: 0;
+    padding: 0;
+}
+#posts .title a {
+    display: block;
+}
+
+#posts tbody tr:nth-child(even) {
+    background-color: #a9a9a9;
+}
+
+
+#posts .author,
+#posts .date,
+#posts .no-of-view {
+    display:none;
+}
+
+#posts .author {
+    min-width: 5em;
+    text-align:left;
+}
+#posts .date {
+    min-width: 5em;
+    text-align: center;
+}
+#posts .no-of-view {
+    min-width: 4em;
+    text-align: right;
+    padding-right: 1em;
+    box-sizing: border-box;
+}
+
+@media all and ( min-width: 33.9em ) {
+    #posts .author {
+        display: table-cell;
+    }
+}
+@media all and ( min-width: 47.9em ) {
+    #posts .date,
+    #posts .no-of-view {
+        display: table-cell;
+    }
+}
+
+
+/** post new */
+
+#post-new {
+    /* display: none; */
+}
+.post-new-button {
+    cursor: pointer;
+}
