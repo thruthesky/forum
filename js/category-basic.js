@@ -8,4 +8,8 @@ jQuery( function( $ ) {
         $('#post-new').hide();
         $posts.show();
     });
+
+
+
 } );
+

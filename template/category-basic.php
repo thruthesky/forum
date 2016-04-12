@@ -2,6 +2,8 @@
 get_header();
 wp_enqueue_style( 'category-basic', get_stylesheet_directory_uri() . '/korean-style-forum-template/css/category-basic.css' );
 wp_enqueue_script( 'category-basic', get_stylesheet_directory_uri() . '/korean-style-forum-template/js/category-basic.js' );
+wp_enqueue_script( 'forum', get_stylesheet_directory_uri() . '/korean-style-forum-template/js/forum.js' );
+wp_enqueue_script( 'jquery-form' );
 
 
 
@@ -51,11 +53,38 @@ else $category_id = $categories[0]->term_id;
             </div>
 
 
-            <div>
-                <label for="post-file">
-                    <input type="file" name="attachment">
-                </label>
+            <div class="file-upload">
+                <span class="dashicons dashicons-camera"></span>
+                <span class="text">Choose File</span>
+                <input type="file" name="file" onchange="forum.on_change_file_upload(this);" style="opacity: .001;">
             </div>
+            <div class="loader"><img src="forum"></div>
+            <style scoped>
+                .file-upload {
+                    position: relative;
+                    width: 200px;
+                    height: 32px;
+                    overflow: hidden;
+                    background-color: #e9e9e9;
+                }
+                .file-upload .dashicons-camera:before {
+                    font-size: 2em;
+                }
+                .file-upload .text {
+                    padding: 1em;
+                    font-size: 1.2em;
+                }
+                .file-upload input {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    margin: 0;
+                    padding: 0;
+                    width: 200px;
+                    height: 32px;
+                    font-size: 2em;
+                }
+            </style>
 
             <label for="post-submit-button"><input id="post-submit-button" type="submit"></label>
             <label for="post-cancel-button"><div id="post-cancel-button">Cancel</div></label>
