@@ -1,12 +1,9 @@
 <?php
 get_header();
-wp_enqueue_style( 'category-basic', get_stylesheet_directory_uri() . '/korean-style-forum-template/css/category-basic.css' );
-wp_enqueue_script( 'category-basic', get_stylesheet_directory_uri() . '/korean-style-forum-template/js/category-basic.js' );
-wp_enqueue_script( 'forum', get_stylesheet_directory_uri() . '/korean-style-forum-template/js/forum.js' );
+wp_enqueue_style( 'category-basic', get_stylesheet_directory_uri() . '/forum/css/category-basic.css' );
+wp_enqueue_script( 'category-basic', get_stylesheet_directory_uri() . '/forum/js/category-basic.js' );
+wp_enqueue_script( 'forum', get_stylesheet_directory_uri() . '/forum/js/forum.js' );
 wp_enqueue_script( 'jquery-form' );
-
-
-
 $categories = get_the_category();
 if ( empty($categories) ) {
     $category = get_category_by_slug( segment(2) );
@@ -14,8 +11,12 @@ if ( empty($categories) ) {
 
 }
 else $category_id = $categories[0]->term_id;
-
 ?>
+<script>
+    var url_endpoint = "<?php echo home_url("category/forum")?>";
+    var max_upload_size = <?php echo wp_max_upload_size();?>;
+</script>
+
 
     <section id="post-new">
         <form action="<?php echo home_url("category/forum")?>" method="post" enctype="multipart/form-data">
@@ -31,60 +32,29 @@ else $category_id = $categories[0]->term_id;
             <div class="text">
 
                 <?php
-                $content = '안녕하세요.<br>반갑습니다.<br>어떻게 하라요?<p>이미치 추가는요? 커서에요?</p>';
+                $content = '';
                 $editor_id = 'content';
                 $settings = array( 'media_buttons' => false, 'textarea_rows' => 20,
                     'quicktags' => false
                 );
                 wp_editor( $content, $editor_id, $settings );
-                ?>
 
-                <script>
-                    jQuery(function($) {
-                        setTimeout(
-                            function() {
-                                tinymce.activeEditor.insertContent('image <img alt="Smiley face" src="http://work.org/wordpress/wp-content/themes/x5/img/skype_id.png"/>');
-                            }
-                            , 2000
-                        );
-                    });
-                </script>
+                ?>
 
             </div>
 
+            <div class="photos"></div>
+            <div class="files"></div>
 
             <div class="file-upload">
                 <span class="dashicons dashicons-camera"></span>
                 <span class="text">Choose File</span>
                 <input type="file" name="file" onchange="forum.on_change_file_upload(this);" style="opacity: .001;">
             </div>
-            <div class="loader"><img src="forum"></div>
-            <style scoped>
-                .file-upload {
-                    position: relative;
-                    width: 200px;
-                    height: 32px;
-                    overflow: hidden;
-                    background-color: #e9e9e9;
-                }
-                .file-upload .dashicons-camera:before {
-                    font-size: 2em;
-                }
-                .file-upload .text {
-                    padding: 1em;
-                    font-size: 1.2em;
-                }
-                .file-upload input {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    margin: 0;
-                    padding: 0;
-                    width: 200px;
-                    height: 32px;
-                    font-size: 2em;
-                }
-            </style>
+            <div class="loader">
+                <img src="<?php echo get_stylesheet_directory_uri() ?>/forum/img/loader14.gif">
+                File upload is in progress. Please wait.
+            </div>
 
             <label for="post-submit-button"><input id="post-submit-button" type="submit"></label>
             <label for="post-cancel-button"><div id="post-cancel-button">Cancel</div></label>

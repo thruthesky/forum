@@ -79,6 +79,86 @@
 #post-new {
     /* display: none; */
 }
+
 .post-new-button {
     cursor: pointer;
 }
+
+/* Post file upload button */
+
+.file-upload {
+    position: relative;
+    width: 200px;
+    height: 32px;
+    overflow: hidden;
+    background-color: #e9e9e9;
+}
+.file-upload .dashicons-camera:before {
+    font-size: 2em;
+}
+.file-upload .text {
+    padding: 1em;
+    font-size: 1.2em;
+}
+.file-upload input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    height: 32px;
+    font-size: 2em;
+}
+
+
+#post-new .loader {
+    display: none;
+}
+
+
+#post-new .photos {
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.photos .attach {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+.photos .attach img {
+    width: 100%;
+    height: auto;
+}
+.photos .attach .delete {
+    position: absolute;
+    z-index: 3;
+    padding: 6px;
+    box-sizing: border-box;
+    left: 0;
+    bottom: 0;
+    width: inherit;
+    background-color: aliceblue;
+}
+
+.photos .attach:nth-child(even) .delete {
+    background-color: #7ba8bf;
+}
+
+
+
+#post-new .files {
+
+}
+
+.files .attach .delete {
+    padding-left: 2em;
+}
+.attach .delete .dashicons-trash {
+    font-size: 1.5em;
+}
+
+
