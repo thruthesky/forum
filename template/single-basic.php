@@ -12,7 +12,6 @@ if ( ! have_posts() ) {
 the_post();
 
 
-
 ?>
 
 <div id="primary" class="content-area">
@@ -24,7 +23,8 @@ the_post();
             </div>
 
             <div class="info">
-                No. of Views : <?php  echo post()->increaseNoOfView( get_the_ID() )?>
+                No. : <?php the_ID()?>,
+                Count of Viewers : <?php  echo post()->increaseNoOfView( get_the_ID() )?>
             </div>
 
 

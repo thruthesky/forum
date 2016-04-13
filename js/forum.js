@@ -73,7 +73,7 @@ var forum = {
         }
         else {
             forum.el.files().append( forum.markup.upload( data ) );
-            m = '<a href="'+data['url']+'">'+data['file']['name']+'</a>';
+            m = '<a id="id'+data['attach_id']+'" href="'+data['url']+'">'+data['file']['name']+'</a>';
             tinymce.activeEditor.insertContent(m);
         }
     },
@@ -108,7 +108,13 @@ var forum = {
             if ( re['success'] == true ) {
                 var editor = tinymce.activeEditor;
                 var content = editor.getContent();
-                var ex = new RegExp('<img[^>]+'+id+'[^>]+>', 'gi'); // patterns, modifiers
+                var ex;
+                if ( $attach.attr('type') == 'image' ) {
+                    ex = new RegExp('<img[^>]+'+id+'[^>]+>', 'gi'); // patterns, modifiers
+                }
+                else {
+                    ex = new RegExp('<a[^>]+'+id+'[^>]+>[^>]*</a>', 'gi'); // patterns, modifiers
+                }
                 var html = content.replace(ex, '');
                 console.log( html );
                 editor.setContent(html);

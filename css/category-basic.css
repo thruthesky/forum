@@ -142,6 +142,7 @@
     bottom: 0;
     width: inherit;
     background-color: aliceblue;
+    cursor: pointer;
 }
 
 .photos .attach:nth-child(even) .delete {
